@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Scheduler
+  description: API services for scheduler
+  version: 1.0.0
+servers:
+  - url: "locahost:3000"
+    description: Scheduler
+tags:
+  - name: system
+    description: System 
+  - name: job
+    description: Job
+paths:
+  /version:
+    get:
+      tags:
+        - system
+      summary: Get system version No.
+      description: Get system version No.
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      packageVersion:
+                        type: string
+                      refVersion:
+                        type: string
+              example:
+                success: true
+                message: Success.
+                result:
+                  packageVersion: 1.0.0
+                  refVersion: local
+  /job/{jobType}/add:
+    post:
+      tags:
+        - job
+      summary: Add a new job
+      description: Add a new job
+      parameters:
+        - in: path
+          name: jobType
+          required: true
+          schema:
+            type: string
+          example: get-api-version
+      requestBody:
+        description: Required parameters for add a new job
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refId:
+                  type: string
+                  description: refId from your service for identification
+                datasets:
+                  type: array
+                  items:
+                    type: object
+                  description: Array of dataset
+                opts:
+                  type: object
+                  description: Bull Job options
+                callbackApi:
+                  type: string
+                  description: Callback if needed to response data after scheduled job finished
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      jobs:
+                        type: array
+                        description: Array of added jobs
+                        items:
+                          type: object
+components:
+  schemas:
+    unauthorizedError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errCode:
+          type: string
+        message:
+          type: string
+      example:
+        success: false
+        errCode: UnauthorizedActionError
+        message: Unauthorized action.
+    error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errCode:
+          type: string
+        message:
+          type: string
+      example:
+        success: false
+        errCode: ErrorCode
+        message: Error message of corresponding error code.
+    systemError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errCode:
+          type: string
+        message:
+          type: string
+      example:
+        success: false
+        errCode: ServerError
+        message: Server Error.

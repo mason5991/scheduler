@@ -1,0 +1,3 @@
+EXPORTER_REDIS_URL=redis://job-queue-redis:6379
+EXPORTER_PREFIX=bull
+EXPORTER_STAT_PREFIX=bull_queue_

@@ -1,0 +1,18 @@
+FROM node:14.18.0-alpine as build
+WORKDIR /app
+COPY . .
+RUN yarn install
+RUN yarn build
+
+FROM node:14.18.0-alpine as prod
+EXPOSE 3000:3000
+WORKDIR /app
+COPY --from=build /app/build .
+COPY package.json .
+COPY yarn.lock .
+RUN mkdir configs
+RUN mkdir processors
+RUN mkdir logs
+RUN mkdir reports
+RUN yarn install
+CMD ["yarn", "prod"]

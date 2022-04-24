@@ -1,0 +1,8 @@
+{
+  "ENV": "local",
+  "MONGODB_HOST": "localhost",
+  "MONGODB_PORT": 27017,
+  "MONGODB_DATABASE": "scheduler",
+  "MONGODB_USERNAME": "admin",
+  "MONGODB_PASSWORD": "LgY0HPQ1imFMR1s4SWjnZiegMoFLIfJjUBM2ljF77KbJ3jpa"
+}

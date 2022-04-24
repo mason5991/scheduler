@@ -1,0 +1,26 @@
+{
+  "queues": {
+    "scheduler": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 1
+      },
+      "jobs": {
+        "get-api-version": {
+          "opts": { "removeOnComplete": 50, "removeOnFail": 50 }
+        },
+        "delay": {
+          "opts": {
+            "removeOnComplete": 10,
+            "removeOnFail": 20
+          }
+        }
+      }
+    }
+  },
+  "opts": {
+    "removeOnComplete": 100,
+    "removeOnFail": 200
+  }
+}
