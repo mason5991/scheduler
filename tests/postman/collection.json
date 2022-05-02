@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "25744046-d23e-4737-bfdc-5c25dd96bd1f",
+		"name": "scheduler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refId\": \"delay-4\",\r\n    \"datasets\": [{\r\n        \"datasetRefId\": \"delay-4-set-1\",\r\n        \"data\": {\r\n            \"payload\": {\r\n            \"delay\": 3\r\n        } \r\n        }\r\n        \r\n        \r\n    }],\r\n    \"opts\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/job/:jobType/add",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"job",
+						":jobType",
+						"add"
+					],
+					"variable": [
+						{
+							"key": "jobType",
+							"value": "delay"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

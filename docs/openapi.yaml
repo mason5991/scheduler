@@ -4,7 +4,7 @@ info:
   description: API services for scheduler
   version: 1.0.0
 servers:
-  - url: "locahost:3000"
+  - url: "localhost:3000"
     description: Scheduler
 tags:
   - name: system
@@ -72,6 +72,16 @@ paths:
                   items:
                     type: object
                   description: Array of dataset
+                  properties:
+                    datasetRefId:
+                      type: string
+                      description: Reference id for that dataset
+                    data:
+                      type: any
+                      description: the data that the job requires
+                    setting:
+                      type: object
+                      description: Any special setting for that dataset
                 opts:
                   type: object
                   description: Bull Job options

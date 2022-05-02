@@ -21,25 +21,18 @@ const errorHandler = (
 
   const errMap: IErrCode = errCode;
 
-  if (err.name === 'Error') {
-    if (errMap[err.message]) {
-      const { code, message } = errMap[err.message];
-      return res
-        .status(code)
-        .json({ success: false, errCode: err.message, message });
-    }
-    printError(
-      `${err.stack} => [500][${err.name}][${err.message}] Server Error`,
-    );
-    return res.status(500).json({
-      success: false,
-      errCode: 'ServerError',
-      message: 'Server Error.',
-    });
+  if (errMap[err.message]) {
+    const { code, message } = errMap[err.message];
+    return res
+      .status(code)
+      .json({ success: false, errCode: err.message, message });
   }
-  return res
-    .status(404)
-    .json({ success: false, errCode: 'NotFound', message: 'Not found' });
+  printError(err);
+  return res.status(500).json({
+    success: false,
+    errCode: 'ServerError',
+    message: 'Server Error.',
+  });
 };
 
 export default errorHandler;

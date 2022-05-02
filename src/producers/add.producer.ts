@@ -16,8 +16,11 @@ export const add = async (
   const config = getQueueAllConfig();
   const jobConfig = getAllJobTypeConfig();
 
-  // Create jobs
+  if (datasets.length === 0) {
+    throw new Error('NoDatasetProvided');
+  }
 
+  // Create jobs
   const jobs = datasets.map((dataset) => {
     const { datasetRefId, data, ...setting } = dataset;
     printInfo(`[${jobType}][${refId}][${datasetRefId}] Adding new job`);

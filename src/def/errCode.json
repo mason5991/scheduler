@@ -18,5 +18,9 @@
   "FailToUpdateJob": {
     "code": 500,
     "message": "Fail to update job."
+  },
+  "NoDatasetProvided": {
+    "code": 400,
+    "message": "No dataset provided."
   }
 }
